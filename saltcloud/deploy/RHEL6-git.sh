@@ -6,7 +6,7 @@ rm -rf /usr/lib/python/site-packages/salt*
 rm -rf /usr/bin/salt-*
 mkdir -p /root/git
 cd /root/git
-git clone git://github.com/saltstack/salt.git
+git clone https://github.com/saltstack/salt.git
 cd salt
 python setup.py install
 cd
