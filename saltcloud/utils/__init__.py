@@ -856,7 +856,8 @@ def scp_file(dest_path, contents, kwargs):
             )
         )
         proc.poll_and_read_until_finish()
-        proc.communicate()
+        if proc.returncode is None:
+            proc.communicate()
         return proc.returncode
     except Exception as err:
         log.error(
@@ -913,7 +914,8 @@ def win_cmd(command, **kwargs):
             )
         )
         proc.poll_and_read_until_finish()
-        proc.communicate()
+        if proc.returncode is None:
+            proc.communicate()
         return proc.returncode
     except Exception as err:
         log.error(
