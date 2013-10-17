@@ -216,7 +216,8 @@ def create(vm_):
         kwargs['extra_args'] = {'keypair': get_keypair(vm_)}
 
     if get_networkid(vm_) is not False:
-        kwargs['networids'] = get_networkid(vm_)
+        kwargs['networks']= ( CloudStackNetwork( None, None, None, get_networkid(vm_), None, None ), ) # The only attr that is used is 'id'. Setting the rest to None
+
 
     saltcloud.utils.fire_event(
         'event',
@@ -247,7 +248,7 @@ def create(vm_):
         deploy_kwargs = {
             'host': get_ip(data),
             'username': 'root',
-            #'password': data.extra['password'],
+            'password': data.extra['password'],
             'key_filename': get_key(),
             'script': deploy_script.script,
             'name': vm_['name'],
